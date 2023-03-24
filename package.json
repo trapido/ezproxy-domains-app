@@ -18,6 +18,8 @@
     "fs": "^0.0.1-security",
     "nanoid": "^3.3.4",
     "node-fetch": "^2.6.9",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "shelljs": "^0.8.5",
+    "simple-git": "^3.17.0"
   }
 }
