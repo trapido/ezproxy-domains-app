@@ -5,7 +5,7 @@ const path = require("path");
 
 //const proxyFileSUL = "https://raw.githubusercontent.com/sul-dlss/SearchWorks/master/config/ezproxy/sul_proxy_file.txt";
 //const proxyFileLaw = "https://raw.githubusercontent.com/sul-dlss/SearchWorks/master/config/ezproxy/law_proxy_file.txt";
-const inFile = path.resolve(__dirname, "..", "configs", "sul_proxy_file.txt");
+const inFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
 
 async function loadData() {
   const domains = [];

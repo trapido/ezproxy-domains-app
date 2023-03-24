@@ -11,7 +11,7 @@ const dirToSave = path.resolve(__dirname, "..", "config");
 const repo = "ezproxy-domains.git";
 const gitUrl = `https://${username}:${token}@github.com/${username}/${repo}`;
 
-const outFile = path.resolve(__dirname, "..", "configs", "sul_proxy_file.txt");
+const outFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
 
 const httpGetDomains = async (req, res) => {
   const data = await loadData();
