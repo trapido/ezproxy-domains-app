@@ -5,15 +5,7 @@ const app = express();
 const domainsRoute = require("./routes/domains.route");
 
 //middleware
-<<<<<<< HEAD:server/index.js
 app.use(cors({ origin: "*" }));
-||||||| 828a322:server/server.js
-app.use(cors({ origin: "*" }));
-app.use(morgan("combined"));
-=======
-app.use(cors());
-app.use(morgan("combined"));
->>>>>>> f2b43e39b6853e8ed2de3f92358f379b9c7f7b71:server/server.js
 app.use(express.json());
 app.use(express.static("build"));
 //set up domains router
