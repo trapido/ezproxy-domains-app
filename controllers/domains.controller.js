@@ -30,7 +30,6 @@ const gitClone = async () => {
     shelljs.exec(`git remote set-url origin ${gitUrl}`);
     shelljs.exec(`git pull origin main --allow-unrelated-histories`);
   }
-  shelljs.echo("in gitClone", dirToSave);
 };
 
 const gitAdd = async () => {
