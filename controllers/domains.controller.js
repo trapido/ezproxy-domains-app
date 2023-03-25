@@ -38,6 +38,7 @@ const gitAdd = async () => {
     await shelljs.exec(`git add --all`);
     await shelljs.exec(`git commit -m "Updated repo"`);
     await shelljs.exec(`git push -u origin main`);
+    console.log("in gitAdd function");
   } catch (error) {
     console.log("Error while pushing files to git repo, the error is ", error);
   }
