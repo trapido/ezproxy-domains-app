@@ -19,25 +19,25 @@ const httpGetDomains = async (req, res) => {
 };
 
 const writeToFile = async (domains) => {
-  if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
-  await fs.writeFileSync(outFile, domains.join("\n"));
+  //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
+  fs.writeFileSync(outFile, domains.join("\n"));
 };
 
 const gitClone = async () => {
   if (!fs.existsSync(path.resolve(__dirname, dirToSave))) {
-    await shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
+    shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
-    await shelljs.exec(`git remote set-url origin ${gitUrl}`);
-    await shelljs.exec(`git pull origin main --allow-unrelated-histories`);
+    shelljs.exec(`git remote set-url origin ${gitUrl}`);
+    shelljs.exec(`git pull origin main --allow-unrelated-histories`);
   }
 };
 
 const gitAdd = async () => {
   try {
-    await shelljs.cd(dirToSave);
-    await shelljs.exec(`git add --all`);
-    await shelljs.exec(`git commit -m "Updated repo"`);
-    await shelljs.exec(`git push -u origin main`);
+    shelljs.cd(dirToSave);
+    shelljs.exec(`git add --all`);
+    shelljs.exec(`git commit -m "Updated repo"`);
+    shelljs.exec(`git push -u origin main`);
     console.log("in gitAdd function");
   } catch (error) {
     console.log("Error while pushing files to git repo, the error is ", error);
