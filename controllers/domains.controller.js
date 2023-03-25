@@ -36,9 +36,14 @@ const gitClone = async () => {
 
 const gitAdd = async () => {
   try {
+    shelljs.echo("Before cd");
     shelljs.cd(dirToSave);
+    shelljs.echo("Before git add");
+
     shelljs.exec(`git add --all`);
+    shelljs.echo("Before git commit");
     shelljs.exec(`git commit -m "Updated repo"`);
+    shelljs.echo("Before git push");
     shelljs.exec(`git push -u origin main`);
   } catch (error) {
     console.log("Error while pushing files to git repo, the error is ", error);
