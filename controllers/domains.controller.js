@@ -20,6 +20,7 @@ const httpGetDomains = async (req, res) => {
 
 const writeToFile = async (domains) => {
   //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
+  shelljs.pwd();
   fs.writeFileSync(outFile, domains.join("\n"));
 };
 
