@@ -30,6 +30,7 @@ const gitClone = async () => {
     shelljs.exec(`git remote set-url origin ${gitUrl}`);
     shelljs.exec(`git pull origin main --allow-unrelated-histories`);
   }
+  shelljs.echo("in gitClone", dirToSave);
 };
 
 const gitAdd = async () => {
@@ -38,7 +39,6 @@ const gitAdd = async () => {
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
     shelljs.exec(`git push -u origin main`);
-    console.log("in gitAdd function");
   } catch (error) {
     console.log("Error while pushing files to git repo, the error is ", error);
   }
