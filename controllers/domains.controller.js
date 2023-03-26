@@ -47,11 +47,9 @@ const gitAdd = async () => {
   try {
     shelljs.exec(`git config user.email ${username}@stanford.edu`);
     shelljs.exec(`git config user.name Irina Trapido`);
-
     shelljs.cd(dirToSave);
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
-    shelljs.echo("Before git push");
     shelljs.exec(`git push -u origin main`);
   } catch (error) {
     shelljs.echo("Error while pushing files to git repo, the error is ", error);
