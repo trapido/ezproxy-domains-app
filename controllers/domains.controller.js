@@ -37,6 +37,7 @@ const gitClone = async () => {
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
     //shelljs.exec(`git remote set-url origin ${gitUrl}`);
+    shelljs.exec(`git config --list`);
     shelljs.cd(dirToSave);
     shelljs.exec(`git pull`);
   }
@@ -46,7 +47,7 @@ const gitAdd = async () => {
   try {
     shelljs.exec(`git config user.email ${username}@stanford.edu`);
     shelljs.exec(`git config user.name Irina Trapido`);
-    shelljs.exec(`git config --list`);
+
     shelljs.cd(dirToSave);
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
