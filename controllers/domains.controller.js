@@ -59,7 +59,7 @@ const httpSaveDomains = async (req, res) => {
     return item.domain;
   });
   await writeToFile(domainsList);
-  await gitAdd();
+  //await gitAdd();
   return res.status(201).json(data);
 };
 
