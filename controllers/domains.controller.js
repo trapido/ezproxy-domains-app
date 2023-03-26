@@ -38,12 +38,8 @@ const gitClone = async () => {
 
 const gitAdd = async () => {
   try {
-    shelljs.echo("Before cd");
     shelljs.cd(dirToSave);
-    shelljs.echo("Before git add");
-
     shelljs.exec(`git add --all`);
-    shelljs.echo("Before git commit");
     shelljs.exec(`git commit -m "Updated repo"`);
     shelljs.echo("Before git push");
     shelljs.exec(`git push -u origin main`);
@@ -63,7 +59,7 @@ const httpSaveDomains = async (req, res) => {
     return item.domain;
   });
   await writeToFile(domainsList);
-  //await gitAdd();
+  await gitAdd();
   return res.status(201).json(data);
 };
 
