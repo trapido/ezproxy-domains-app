@@ -10,7 +10,7 @@ const token = process.env.GITHUB_TOKEN;
 const dirToSave = path.resolve(__dirname, "..", "config");
 const repo = "ezproxy-domains.git";
 const gitUrl = `https://${username}:${token}@github.com/${username}/${repo}`;
-const outFile = path.resolve(__dirname, "config", "sul_proxy_file.txt");
+const outFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
 
 const httpGetDomains = async (req, res) => {
   gitClone();
@@ -22,7 +22,12 @@ const writeToFile = async (domains) => {
   //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
   shelljs.echo("inside writeToFile");
   shelljs.echo(shelljs.pwd());
-  fs.writeFileSync(outFile, domains.join("\n"));
+  shelljs.echo(outFile);
+  try {
+    fs.writeFileSync(outFile, domains.join("\n"));
+  } catch (error) {
+    shelljs.echo(error);
+  }
 };
 
 const gitClone = async () => {
@@ -46,7 +51,7 @@ const gitAdd = async () => {
     shelljs.echo("Before git push");
     shelljs.exec(`git push -u origin main`);
   } catch (error) {
-    console.log("Error while pushing files to git repo, the error is ", error);
+    shelljs.echo("Error while pushing files to git repo, the error is ", error);
   }
 };
 
