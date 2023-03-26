@@ -44,6 +44,8 @@ const gitClone = async () => {
 
 const gitAdd = async () => {
   try {
+    shelljs.exec(`git config user.email ${username}@stanford.edu`);
+    shelljs.exec(`git config user.name Irina Trapido`);
     shelljs.exec(`git config --list`);
     shelljs.cd(dirToSave);
     shelljs.exec(`git add --all`);
