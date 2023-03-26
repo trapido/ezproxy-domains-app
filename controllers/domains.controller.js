@@ -32,8 +32,6 @@ const gitClone = async () => {
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
     //shelljs.exec(`git remote set-url origin ${gitUrl}`);
-    shelljs.echo("inside gitClone");
-    shelljs.echo(shelljs.pwd());
     shelljs.cd(dirToSave);
     shelljs.exec(`git pull`);
   }
@@ -41,9 +39,7 @@ const gitClone = async () => {
 
 const gitAdd = async () => {
   try {
-    shelljs.echo("inside gitAdd");
-    shelljs.echo(shelljs.pwd());
-    shelljs.echo(`git config --list`);
+    shelljs.exec(`git config --list`);
     shelljs.cd(dirToSave);
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
