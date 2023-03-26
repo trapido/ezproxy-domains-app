@@ -20,6 +20,7 @@ const httpGetDomains = async (req, res) => {
 
 const writeToFile = async (domains) => {
   //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
+  shelljs.echo("inside writeToFile");
   shelljs.echo(shelljs.pwd());
   fs.writeFileSync(outFile, domains.join("\n"));
 };
@@ -31,6 +32,8 @@ const gitClone = async () => {
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
     //shelljs.exec(`git remote set-url origin ${gitUrl}`);
+    shelljs.echo("inside gitClone");
+    shelljs.echo(shelljs.pwd());
     shelljs.cd(dirToSave);
     shelljs.exec(`git pull`);
   }
@@ -38,6 +41,8 @@ const gitClone = async () => {
 
 const gitAdd = async () => {
   try {
+    shelljs.echo("inside gitAdd");
+    shelljs.echo(shelljs.pwd());
     shelljs.echo(`git config --list`);
     shelljs.cd(dirToSave);
     shelljs.exec(`git add --all`);
