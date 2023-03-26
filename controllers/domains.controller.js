@@ -30,8 +30,8 @@ const gitClone = async () => {
     shelljs.exec(`git config user.name Irina Trapido`);
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
-    shelljs.exec(`git remote set-url origin ${gitUrl}`);
-    shelljs.exec(`git pull origin main --allow-unrelated-histories`);
+    //shelljs.exec(`git remote set-url origin ${gitUrl}`);
+    shelljs.exec(`git pull`);
   }
 };
 
