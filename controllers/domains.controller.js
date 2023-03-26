@@ -31,7 +31,7 @@ const writeToFile = async (domains) => {
 };
 
 const gitClone = async () => {
-  if (!fs.existsSync(path.resolve(__dirname, dirToSave))) {
+  if (!fs.existsSync(dirToSave)) {
     shelljs.exec(`git config user.email ${username}@stanford.edu`);
     shelljs.exec(`git config user.name Irina Trapido`);
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
