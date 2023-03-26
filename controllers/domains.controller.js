@@ -31,7 +31,7 @@ const gitClone = async () => {
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
     //shelljs.exec(`git remote set-url origin ${gitUrl}`);
-    shelljs.exec(`git pull`);
+    shelljs.exec(`git pull origin main`);
   }
 };
 
