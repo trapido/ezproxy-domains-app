@@ -14,16 +14,9 @@ const outFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
 
 const httpGetDomains = async (req, res) => {
   if (!fs.existsSync(dirToSave)) {
-    shelljs.echo("I> Cloning:");
-    shelljs.echo("I> directory = " + shelljs.pwd());
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
-    // shelljs.exec(`git remote set-url origin ${gitUrl}`);
     shelljs.cd(dirToSave);
-    shelljs.echo("I> Git config contains:");
-    shelljs.exec(`git config --list`);
-    shelljs.echo("I> Pulling:");
-    shelljs.echo("I> directory = " + shelljs.pwd());
     shelljs.exec(`git pull`);
   }
   const data = await loadData();
@@ -32,9 +25,6 @@ const httpGetDomains = async (req, res) => {
 
 const writeToFile = async (domains) => {
   //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
-  shelljs.echo("inside writeToFile");
-  shelljs.echo(shelljs.pwd());
-  shelljs.echo(outFile);
   try {
     fs.writeFileSync(outFile, domains.join("\n"));
   } catch (error) {
@@ -42,15 +32,11 @@ const writeToFile = async (domains) => {
   }
 };
 
-const gitClone = async () => {};
-
 const gitAdd = async () => {
   try {
     shelljs.cd(dirToSave);
-    shelljs.echo("inside gitAdd");
-    shelljs.echo(shelljs.pwd());
-    shelljs.exec(`git config user.email ${username}@stanford.edu`);
-    shelljs.exec(`git config user.name Irina Trapido`);
+    //shelljs.exec(`git config user.email ${username}@stanford.edu`);
+    //shelljs.exec(`git config user.name Irina Trapido`);
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
     shelljs.exec(`git push -u origin main`);
