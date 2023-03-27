@@ -35,8 +35,8 @@ const writeToFile = async (domains) => {
 const gitAdd = async () => {
   try {
     shelljs.cd(dirToSave);
-    //shelljs.exec(`git config user.email ${username}@stanford.edu`);
-    //shelljs.exec(`git config user.name Irina Trapido`);
+    shelljs.exec(`git config user.email ${username}@stanford.edu`);
+    shelljs.exec(`git config user.name Irina Trapido`);
     shelljs.exec(`git add --all`);
     shelljs.exec(`git commit -m "Updated repo"`);
     shelljs.exec(`git push -u origin main`);
