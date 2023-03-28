@@ -16,8 +16,8 @@ const httpGetDomains = async (req, res) => {
   if (!fs.existsSync(dirToSave)) {
     shelljs.exec(`git clone ${gitUrl} ${dirToSave}`);
   } else {
-    shelljs.cd(dirToSave);
-    shelljs.exec(`git pull`);
+    //shelljs.cd(dirToSave);
+    shelljs.exec(`git -C ${dirToSave} pull`);
   }
   const data = await loadData();
   return res.status(200).json(data);
@@ -36,13 +36,12 @@ const httpSaveDomains = async (req, res) => {
 
   try {
     fs.writeFileSync(outFile, domainsList.join("\n"));
-
-    shelljs.cd(dirToSave);
-    shelljs.exec(`git config user.email ${username}@stanford.edu`);
-    shelljs.exec(`git config user.name Irina Trapido`);
-    shelljs.exec(`git add --all`);
-    shelljs.exec(`git commit -m "Updated repo"`);
-    shelljs.exec(`git push -u origin main`);
+    //shelljs.cd(dirToSave);
+    shelljs.exec(`git -C ${dirToSave} config user.email ${username}@stanford.edu`);
+    shelljs.exec(`git -C ${dirToSave} config user.name Irina Trapido`);
+    shelljs.exec(`git -C ${dirToSave} add --all`);
+    shelljs.exec(`git -C ${dirToSave} commit -m "Updated repo"`);
+    shelljs.exec(`git -C ${dirToSave} push -u origin main`);
   } catch (error) {
     shelljs.echo("Error while pushing files to git repo, the error is ", error);
   }
