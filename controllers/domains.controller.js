@@ -23,31 +23,7 @@ const httpGetDomains = async (req, res) => {
   return res.status(200).json(data);
 };
 
-const writeToFile = async (domains) => {
-  //if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
-  try {
-    fs.writeFileSync(outFile, domains.join("\n"));
-  } catch (error) {
-    shelljs.echo(error);
-  }
-};
-
-const gitAdd = async () => {
-  try {
-    shelljs.cd(dirToSave);
-    shelljs.exec(`git config user.email ${username}@stanford.edu`);
-    shelljs.exec(`git config user.name Irina Trapido`);
-    shelljs.exec(`git add --all`);
-    shelljs.exec(`git commit -m "Updated repo"`);
-    shelljs.exec(`git push -u origin main`);
-  } catch (error) {
-    shelljs.echo("Error while pushing files to git repo, the error is ", error);
-  }
-};
-
 const httpSaveDomains = async (req, res) => {
-  shelljs.echo("inside httpSaveDomains");
-  shelljs.echo(shelljs.pwd());
   const data = req.body;
   if (Object.keys(data).length === 0) {
     return res.status(400).json({
@@ -57,9 +33,21 @@ const httpSaveDomains = async (req, res) => {
   const domainsList = data.map((item) => {
     return item.domain;
   });
-  await writeToFile(domainsList);
-  await gitAdd();
+
+  try {
+    fs.writeFileSync(outFile, domainsList.join("\n"));
+
+    shelljs.cd(dirToSave);
+    shelljs.exec(`git config user.email ${username}@stanford.edu`);
+    shelljs.exec(`git config user.name Irina Trapido`);
+    shelljs.exec(`git add --all`);
+    shelljs.exec(`git commit -m "Updated repo"`);
+    shelljs.exec(`git push -u origin main`);
+  } catch (error) {
+    shelljs.echo("Error while pushing files to git repo, the error is ", error);
+  }
+
   return res.status(201).json(data);
 };
 
-module.exports = { httpGetDomains, httpSaveDomains, gitAdd };
+module.exports = { httpGetDomains, httpSaveDomains };
