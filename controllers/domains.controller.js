@@ -22,6 +22,7 @@ const httpGetDomains = async (req, res) => {
     if (fs.existsSync(outFile)) {
       debug='file exist'
     }
+    shelljs.echo(debug)
     shelljs.exec(`git -C ${dirToSave} pull`);
   }
   const data = await loadData();
@@ -44,6 +45,7 @@ const httpSaveDomains = async (req, res) => {
     if (fs.existsSync(outFile)) {
       debug='file exist'
     }
+    shelljs.echo(debug)
     fs.writeFileSync(outFile, domainsList.join("\n"));
     //shelljs.cd(dirToSave);
     shelljs.exec(`git -C ${dirToSave} config user.email ${username}@stanford.edu`);
