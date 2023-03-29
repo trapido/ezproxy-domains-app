@@ -11,7 +11,7 @@ const dirToSave = path.resolve(__dirname, "..", "config");
 const repo = "ezproxy-domains.git";
 const gitUrl = `https://${username}:${token}@github.com/${username}/${repo}`;
 const outFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
-const debug = "";
+let debug = "";
 
 const httpGetDomains = async (req, res) => {
   if (!fs.existsSync(dirToSave)) {
