@@ -11,7 +11,6 @@ const dirToSave = path.resolve(__dirname, "..", "config");
 const repo = "ezproxy-domains.git";
 const gitUrl = `https://${username}:${token}@github.com/${username}/${repo}`;
 const outFile = path.resolve(__dirname, "..", "config", "sul_proxy_file.txt");
-let debug = "";
 
 const httpGetDomains = async (req, res) => {
   if (!fs.existsSync(dirToSave)) {
@@ -19,10 +18,8 @@ const httpGetDomains = async (req, res) => {
   } else {
     //shelljs.cd(dirToSave);
     shelljs.echo(">I inside pull");
-    if (fs.existsSync(outFile)) {
-      debug='file exist'
-    }
-    shelljs.echo(debug)
+    shelljs.echo(shelljs.ls("."))
+
     shelljs.exec(`git -C ${dirToSave} pull`);
   }
   const data = await loadData();
@@ -42,10 +39,8 @@ const httpSaveDomains = async (req, res) => {
 
   try {
     shelljs.echo(">I inside httpSave");
-    if (fs.existsSync(outFile)) {
-      debug='file exist'
-    }
-    shelljs.echo(debug)
+
+    shelljs.echo(shelljs.ls("."))
     fs.writeFileSync(outFile, domainsList.join("\n"));
     //shelljs.cd(dirToSave);
     shelljs.exec(`git -C ${dirToSave} config user.email ${username}@stanford.edu`);
