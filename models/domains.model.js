@@ -14,7 +14,7 @@ async function loadData() {
     //const responseText = await response.text();
     let responseText = fs.readFileSync(inFile, "utf8");
     data = responseText.split("\n");
-    data = data.filter((str) => str !== "");
+    data = data.filter((item) => item !== "").map(item => item.replace(/\r$/, ''));
     data.forEach((item) => domains.push({ id: nanoid(), domain: item }));
   } catch (err) {
     // handle error
