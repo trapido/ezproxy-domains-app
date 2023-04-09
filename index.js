@@ -14,16 +14,9 @@ app.use(express.static("build"));
 //to view logs, go to "<url>/static/error.log"
 app.use('/static', express.static(path.join(__dirname, 'logs')))
 // Place the express-winston logger before the router.
-app.use(expressWinston.logger({
-  transports: [
-    new winston.transports.Console({
-      json: true,
-    })
-  ]
-}));
-
 //set up domains router
 app.use("/v1/domains", domainsRoute);
+//add express-winston middleware for logging errors
 app.use(expressWinston.errorLogger({
   transports: [
     new winston.transports.File({
