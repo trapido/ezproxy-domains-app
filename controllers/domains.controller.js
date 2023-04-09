@@ -23,7 +23,7 @@ const httpGetDomains = async (req, res) => {
     shelljs.exec(`git -C ${dirToSave} pull`);
   }
   const data = await loadData();
-  return res.status(200).json(data);
+  res.status(200).json(data);
 };
 
 const httpSaveDomains = async (req, res) => {
@@ -38,9 +38,9 @@ const httpSaveDomains = async (req, res) => {
   });
 
   try {
-    shelljs.echo(">I inside httpSave");
-
+    shelljs.echo("Inside httpSave");
     shelljs.echo(shelljs.ls("."))
+  
     fs.writeFileSync(outFile, domainsList.join("\n"));
     //shelljs.cd(dirToSave);
     shelljs.exec(`git -C ${dirToSave} config user.email ${username}@stanford.edu`);
