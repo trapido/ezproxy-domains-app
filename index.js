@@ -26,6 +26,10 @@ app.use(expressWinston.errorLogger({
   ]
 })); 
 
+app.use(express.errorLogger({
+  dumpExceptions: true,
+  showStack: true
+}));
 const port = process.env.PORT || 3001;
 const start = async () => {
   try {
